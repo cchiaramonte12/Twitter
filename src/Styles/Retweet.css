@@ -1,0 +1,20 @@
+.unretweet {
+    height: 35px;
+    width: 35px;
+    float: left;
+    padding-top: 12px;
+}
+
+.retweet {
+    height: 35px;
+    width: 35px;
+    float: left;
+    padding-top: 12px;
+}
+
+.retweetCount {
+    padding-left: 0px;
+    padding-top: 5px;
+    color: gray;
+    float:right;
+}

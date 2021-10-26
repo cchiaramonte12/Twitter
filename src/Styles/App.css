@@ -1,0 +1,32 @@
+.TweetContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Header {
+    display: flex;
+}
+
+.inputs {
+    display: flex;
+    justify-content: space-evenly;
+    padding-bottom: 20px;
+}
+
+.output {
+    display: flex;
+    justify-content: center;
+
+}
+
+.profileLink {
+    padding-bottom: 10px;
+}
+
+.filter {
+    padding: 10px;
+    padding-left: 60px;
+    display: flex;
+    justify-content: center;
+}
