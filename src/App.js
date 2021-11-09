@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* Author: Cameron Chiaramonte */
+import React, { useEffect, useState } from 'react';
 import Body from './Components/Body.js';
 import Header from './Components/Header.js';
 import Tweet from './Components/Tweet.js';
@@ -7,23 +8,41 @@ import {BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Profile from './Components/Profile.js';
 import Likes from './Components/Likes.js';
 import Retweets from './Components/Retweet.js';
+import firestore from "./firebase";
+import {collection, getDocs} from "firebase/firestore/lite";
+
+
+
 
 function App() {
   let [author, setAuthor] = useState("");
   let [date, setDate] = useState("");
   let [content, setContent] = useState("");
-  let [tweet, setTweet] = useState([
+  const [tweet, setTweet] = useState([
     {
       content: "This is my first tweet",
-      author: "Cameron Chiaramonte",
+      author: "Cameron",
       username: "cchiaramonte",
       date: "September 26th",
       likes: <Likes />,
-      retweets: <Retweets />
+      retweets: <Retweets />,
+      agePrediction: "21"
     }
   ]);
   let [username, setUsername] = useState("");
   let [keyword, setKeyword] = useState("");
+
+  useEffect(() => {
+    let tweets = collection(firestore, "Tweets");
+    getDocs(tweets).then(snapshot => {
+      let tempTweets = [];
+      snapshot.forEach(document => {
+        tempTweets.push(document.data());
+      });
+      setTweet(tempTweets);
+      console.log(tempTweets);
+    });
+  }, []);
 
   return (
     <Router>
@@ -61,13 +80,15 @@ function App() {
           Submit!
         </button>
         </div>
+        
         <div>
-          {tweet.filter(tweet => tweet.content.includes(keyword)).map(tweet => (
+          {tweet.filter(tweet => tweet.content.toLowerCase().includes(keyword)).map(tweet => (
             <div className = "output">
               <Tweet author={tweet.author} username={tweet.username} date = {tweet.date} content = {tweet.content} />
             </div>
           ))}
         </div>
+          
       <Body />
 
          </div>

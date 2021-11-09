@@ -4,14 +4,15 @@ import '../Styles/Likes.css';
 import like from '../Components/twitterLike.png';
 
 const Likes = () => {
-    const [bool, setBool] = useState(false);
-    const [count, setCount] = useState(1);
+    const [bool, setBool] = useState(true);
+    const [count, setCount] = useState(0);
     const increaseCount = () => {
         setCount(count+1);
     }
     const decreaseCount = () => {
         setCount(count-1);
     }
+
     return (
         <div>
 
@@ -26,6 +27,7 @@ const Likes = () => {
                 }
                 decreaseCount()
             }}><img src={like} alt="Twitter Like" className = "like"/><div className="likeCount"><p>{count}</p></div> </div>}
+
         </div>
     );
 };

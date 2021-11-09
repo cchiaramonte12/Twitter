@@ -4,8 +4,8 @@ import '../Styles/Retweet.css';
 import retweet from '../Components/retweet.png';
 
 const Retweets = () => {
-    const [bool, setBool] = useState(false);
-    const [count, setCount] = useState(1);
+    const [bool, setBool] = useState(true);
+    const [count, setCount] = useState(0);
     const increaseCount = () => {
         setCount(count+1);
     }
